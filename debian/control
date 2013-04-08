@@ -1,0 +1,12 @@
+Source: ros-groovy-rosbridge-server
+Section: misc
+Priority: extra
+Maintainer: Brandon Alexander <baalexander@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), python-imaging, ros-groovy-catkin, ros-groovy-rosapi, ros-groovy-rosbridge-library, ros-groovy-rospy
+Homepage: https://github.com/RobotWebTools/rosbridge_suite
+Standards-Version: 3.9.2
+
+Package: ros-groovy-rosbridge-server
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-imaging, ros-groovy-rosapi, ros-groovy-rosauth, ros-groovy-rosbridge-library, ros-groovy-rospy
+Description: A WebSocket interface to rosbridge.
