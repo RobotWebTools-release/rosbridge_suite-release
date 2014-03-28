@@ -114,9 +114,8 @@ if __name__ == "__main__":
     keyfile = rospy.get_param('~keyfile', None)
     # if authentication should be used
     authenticate = rospy.get_param('~authenticate', False)
-    port = rospy.get_param('~port', 9090)
-    address = rospy.get_param('~address', "")
-
+    # the port to run on (TODO: move to ~port)
+    port = rospy.get_param('/rosbridge/port', 9090)
     if "--port" in sys.argv:
         idx = sys.argv.index("--port")+1
         if idx < len(sys.argv):
@@ -127,9 +126,9 @@ if __name__ == "__main__":
 
     application = Application([(r"/", RosbridgeWebSocket), (r"", RosbridgeWebSocket)])
     if certfile is not None and keyfile is not None:
-        application.listen(port, address, ssl_options={ "certfile": certfile, "keyfile": keyfile})
+        application.listen(port, ssl_options={ "certfile": certfile, "keyfile": keyfile})
     else:
-        application.listen(port, address)
+        application.listen(port)
     rospy.loginfo("Rosbridge WebSocket server started on port %d", port)
 
     IOLoop.instance().start()
