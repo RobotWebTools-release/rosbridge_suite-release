@@ -1,0 +1,12 @@
+Source: ros-groovy-rosapi
+Section: misc
+Priority: extra
+Maintainer: Brandon Alexander <baalexander@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), ros-groovy-catkin, ros-groovy-message-generation, ros-groovy-rosbridge-library, ros-groovy-rospy
+Homepage: https://github.com/RobotWebTools/rosbridge_suite
+Standards-Version: 3.9.2
+
+Package: ros-groovy-rosapi
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-message-runtime, ros-groovy-rosbridge-library, ros-groovy-rosgraph, ros-groovy-rosnode, ros-groovy-rospy
+Description: Provides service calls for getting ros meta-information, like list of topics, services, params, etc.
