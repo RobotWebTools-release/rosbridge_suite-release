@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/RobotWebTools/rosbridge_suite.png)](https://travis-ci.org/RobotWebTools/rosbridge_suite)
+
 Rosbridge provides a JSON interface to ROS, allowing any client to send JSON to
 publish or subscribe to ROS topics, call ROS services, and more. Rosbridge
 supports a variety of transport layers, including WebSockets.
@@ -23,19 +25,14 @@ supports a variety of transport layers, including WebSockets.
 A rosbridge client is a program that communicates with rosbridge using its JSON
 API. Rosbridge clients include:
 
- * [ros.js](http://www.ros.org/wiki/rosjs) - A JavaScript API, which
+ * [roslibjs](https://github.com/robotwebtools/roslibjs) - A JavaScript API, which
    communicates with rosbridge over WebSockets.
 
 ### Resources
 
  * [Documentation](http://www.ros.org/wiki/rosbridge_suite)
+ * [Rosbridge Protocol Specification](ROSBRIDGE_PROTOCOL.md)
  * [Coding Style Guide](http://www.ros.org/wiki/PyStyleGuide)
  * [Contributors](https://github.com/RobotWebTools/rosbridge_suite/graphs/contributors)
  * [License (BSD)](http://opensource.org/licenses/BSD-2-Clause)
 
-### Change Logs
-
- * 0.4.3
-  * launch file location fixed
-  * SSL option added
-  * Authentication added
