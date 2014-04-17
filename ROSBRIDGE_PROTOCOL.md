@@ -85,7 +85,8 @@ ROS operations:
   * **advertise** – advertise that you are publishing a topic
   * **unadvertise** – stop advertising that you are publishing topic publish - a published ROS-message
   * **subscribe** - a request to subscribe to a topic
-  * **unsubscribe** - a request to unsubscribe from a topic call_service - a service call
+  * **unsubscribe** - a request to unsubscribe from a topic
+  * **call_service** - a service call
   * **service_response** - a service response
 
 In general, actions or operations that the client takes (such as publishing and
@@ -423,7 +424,8 @@ Calls a ROS service
 { "op": "service_response",
   (optional) "id": <string>,
   "service": <string>,
-  (optional) "values": <list<json>>
+  (optional) "values": <list<json>>,
+  "result": <boolean>
 }
 ```
 
@@ -434,6 +436,7 @@ A response to a ROS service call
     this field can be omitted (and will be by the rosbridge server)
  * **id** – if an ID was provided to the service request, then the service
     response will contain the ID
+ * **result** - return value of service callback. true means success, false failure.
 
 ## 4 Further considerations
 
