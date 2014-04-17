@@ -1,3 +1,26 @@
+## rosbridge_suite (hydro) - 0.5.4-1
+
+The packages in the `rosbridge_suite` repository were released into the `hydro` distro by running `/usr/bin/bloom-release rosbridge_suite --track=hydro --rosdistro=hydro` on `Thu, 17 Apr 2014 03:49:16 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+- rosdistro version: `0.5.3-0`
+- old version: `0.5.4-0`
+- new version: `0.5.4-1`
+
+Versions of tools used:
+- bloom version: `0.5.4`
+- catkin_pkg version: `0.2.1`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.4`
+- vcstools version: `0.1.33`
+
+
 ## rosbridge_suite (hydro) - 0.5.4-0
 
 The packages in the `rosbridge_suite` repository were released into the `hydro` distro by running `/usr/bin/bloom-release rosbridge_suite --track=hydro --rosdistro=hydro` on `Thu, 17 Apr 2014 03:42:01 -0000`
