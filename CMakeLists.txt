@@ -14,7 +14,6 @@ add_message_files(
   TestHeaderTwo.msg
   TestTimeArray.msg
   TestUInt8.msg
-  TestUInt8FixedSizeArray16.msg
   NOINSTALL
 )
 
