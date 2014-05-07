@@ -9,7 +9,7 @@ tracks:
     - git-bloom-generate -y rosdebian --prefix release/:{ros_distro} :{ros_distro}
       -i :{release_inc}
     devel_branch: stable_release
-    last_version: 0.5.4
+    last_version: 0.5.5
     name: rosbridge_suite
     patches: null
     release_inc: '0'
@@ -29,12 +29,12 @@ tracks:
     - git-bloom-generate -y rosdebian --prefix release/:{ros_distro} :{ros_distro}
       -i :{release_inc}
     devel_branch: stable_release
-    last_version: 0.5.4
+    last_version: 0.5.5
     name: rosbridge_suite
     patches: null
-    release_inc: '1'
+    release_inc: '0'
     release_repo_url: null
-    release_tag: :{version} 
+    release_tag: :{version}
     ros_distro: hydro
     vcs_type: git
     vcs_uri: https://github.com/RobotWebTools/rosbridge_suite
