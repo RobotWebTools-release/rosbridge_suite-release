@@ -54,9 +54,9 @@ class Registration():
     def unregister(self):
         manager.unregister(self.client_id, self.topic)
 
-    def register_advertisement(self, msg_type, adv_id=None, latch=False, queue_size=100):
+    def register_advertisement(self, msg_type, adv_id=None, latch=False):
         # Register with the publisher manager, propagating any exception
-        manager.register(self.client_id, self.topic, msg_type, latch=latch, queue_size=queue_size)
+        manager.register(self.client_id, self.topic, msg_type, latch=latch)
 
         self.clients[adv_id] = True
 
@@ -94,7 +94,6 @@ class Advertise(Capability):
         topic = message["topic"]
         msg_type = message["type"]
         latch = message.get("latch", False)
-        queue_size = message.get("queue_size", 100)
 
         # Create the Registration if one doesn't yet exist
         if not topic in self._registrations:
@@ -102,7 +101,7 @@ class Advertise(Capability):
             self._registrations[topic] = Registration(client_id, topic)
 
         # Register, propagating any exceptions
-        self._registrations[topic].register_advertisement(msg_type, aid, latch, queue_size)
+        self._registrations[topic].register_advertisement(msg_type, aid, latch)
 
     def unadvertise(self, message):
         # Pull out the ID
