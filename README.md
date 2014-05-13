@@ -1,3 +1,26 @@
+## rosbridge_suite (groovy) - 0.5.5-1
+
+The packages in the `rosbridge_suite` repository were released into the `groovy` distro by running `/usr/bin/bloom-release rosbridge_suite --track=groovy --rosdistro=groovy` on `Tue, 13 May 2014 02:07:17 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+- rosdistro version: `0.5.5-0`
+- old version: `0.5.5-0`
+- new version: `0.5.5-1`
+
+Versions of tools used:
+- bloom version: `0.5.7`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.33`
+
+
 ## rosbridge_suite (indigo) - 0.5.5-0
 
 The packages in the `rosbridge_suite` repository were released into the `indigo` distro by running `/usr/bin/bloom-release rosbridge_suite --track=indigo --rosdistro=indigo` on `Wed, 07 May 2014 03:42:04 -0000`
