@@ -65,7 +65,7 @@ class CallService(Capability):
 
         # Create the callbacks
         s_cb = partial(self._success, cid, service, fragment_size, compression)
-        e_cb = partial(self._failure, cid, service)
+        e_cb = partial(self._failure, cid)
 
         # Kick off the service caller thread
         ServiceCaller(trim_servicename(service), args, s_cb, e_cb).start()
@@ -74,27 +74,16 @@ class CallService(Capability):
         outgoing_message = {
             "op": "service_response",
             "service": service,
-            "values": message,
-            "result": True
+            "values": message
         }
         if cid is not None:
             outgoing_message["id"] = cid
         # TODO: fragmentation, compression
         self.protocol.send(outgoing_message)
 
-    def _failure(self, cid, service, exc):
+    def _failure(self, cid, exc):
         self.protocol.log("error", "call_service %s: %s" %
             (type(exc).__name__, str(exc)), cid)
-        # send response with result: false
-        outgoing_message = {
-            "op": "service_response",
-            "service": service,
-            "values": str(exc),
-            "result": False
-        }
-        if cid is not None:
-            outgoing_message["id"] = cid
-        self.protocol.send(outgoing_message)
 
 
 def trim_servicename(service):

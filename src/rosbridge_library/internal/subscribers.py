@@ -1,7 +1,6 @@
 # Software License Agreement (BSD License)
 #
 # Copyright (c) 2012, Willow Garage, Inc.
-# Copyright (c) 2013, PAL Robotics SL
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -125,10 +124,6 @@ class MultiSubscriber():
         """
         with self.lock:
             self.subscriptions[client_id] = callback
-            # If the topic is latched, add_callback will immediately invoke
-            # the given callback.
-            self.subscriber.impl.add_callback(self.callback, [callback])
-            self.subscriber.impl.remove_callback(self.callback, [callback])
 
     def unsubscribe(self, client_id):
         """ Unsubscribe the specified client from this subscriber
@@ -146,7 +141,7 @@ class MultiSubscriber():
             ret = len(self.subscriptions) != 0
             return ret
 
-    def callback(self, msg, callbacks=None):
+    def callback(self, msg):
         """ Callback for incoming messages on the rospy.Subscriber
 
         Converts the incoming msg to JSON, then passes the JSON to the
@@ -154,7 +149,6 @@ class MultiSubscriber():
 
         Keyword Arguments:
         msg - the ROS message coming from the subscriber
-        callbacks - subscriber callbacks to invoke
 
         """
         # Try to convert the msg to JSON
@@ -165,9 +159,8 @@ class MultiSubscriber():
             return
         
         # Get the callbacks to call
-        if not callbacks:
-            with self.lock:
-                callbacks = self.subscriptions.values()
+        with self.lock:
+            callbacks = self.subscriptions.values()
 
         # Pass the JSON to each of the callbacks
         for callback in callbacks:
@@ -224,4 +217,3 @@ class SubscriberManager():
 
 
 manager = SubscriberManager()
-
