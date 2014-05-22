@@ -1,14 +1,4 @@
 DEVEL
- *
-
-2013-10-31 - **0.5.1**
- * Implement multiple subscriptions to latched topics (fixes #1) (RainCT)
- * more natural json for call service result (OTL)
- * Add service call fail handling (OTL)
-
-2013-07-16 - **0.5.0** 
- * Adds travis CI script (rctoris)
- * current authentication op code added (rctoris)
  * Removes global bin installation (jihoonl)
  * Moves Protocol Specification into repository (baalexander)
 
