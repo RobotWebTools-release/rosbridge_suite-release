@@ -33,23 +33,12 @@
 import rospy
 import time
 
-class InvalidArgumentException(Exception):
-    pass
-
-class MissingArgumentException(Exception):
-    pass
+from rosbridge_library.internal.exceptions import InvalidArgumentException
+from rosbridge_library.internal.exceptions import MissingArgumentException
 
 #from rosbridge_library.internal.pngcompression import encode
 from rosbridge_library.capabilities.fragmentation import Fragmentation
-
-# try to import json-lib: 1st try usjon, 2nd try simplejson, else import standard python json
-try:
-    import ujson as json
-except ImportError:
-    try:
-        import simplejson as json
-    except ImportError:
-        import json
+from rosbridge_library.util import json
 
 
 def is_number(s):
@@ -84,6 +73,8 @@ class Protocol:
     # !! this might be related to (or even be avoided by using) throttle_rate !!
     delay_between_messages = 0.01
     request_list = None
+
+    parameters = None
 
     def __init__(self, client_id):
         """ Keyword arguments:
@@ -173,7 +164,7 @@ class Protocol:
             self.log("error", "Unknown operation: %s.  Allowed operations: %s" % (op, self.operations.keys()), mid)
             return
         # this way a client can change/overwrite it's active values anytime by just including parameter field in any message sent to rosbridge
-        #  maybe need to be improved to bind parameter values to specific operation.. 
+        #  maybe need to be improved to bind parameter values to specific operation..
         if "fragment_size" in msg.keys():
             self.fragment_size = msg["fragment_size"]
             #print "fragment size set to:", self.fragment_size
@@ -181,7 +172,7 @@ class Protocol:
             self.delay_between_messages = msg["message_intervall"]
         if "png" in msg.keys():
             self.png = msg["msg"]
-        
+
         # now try to pass message to according operation
         try:
             self.operations[op](msg)
@@ -363,4 +354,3 @@ class Protocol:
             rospy.loginfo(stdout_formatted_msg)
         else:
             rospy.logdebug(stdout_formatted_msg)
-
