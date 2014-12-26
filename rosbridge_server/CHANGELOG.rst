@@ -12,6 +12,18 @@ Changelog for package rosbridge_server
 * remove python-imaging dependency. it is used in rosbridge_library
 * Contributors: Jihoon Lee, Russell Toris
 
+0.7.5 (2014-12-26)
+------------------
+* Function in robridge_tools for importing tornado
+* Revert "reverts back to internal tornado until fix is ready"
+  This reverts commit 49eeb1d97da154213d3170c95169b5677b329d07.
+* Contributors: Jon Binney
+
+0.7.4 (2014-12-16)
+------------------
+* reverts back to internal tornado until fix is ready
+* Contributors: Russell Toris
+
 0.7.3 (2014-12-15)
 ------------------
 
