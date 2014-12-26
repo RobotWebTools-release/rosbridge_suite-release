@@ -1,0 +1,174 @@
+ros-indigo-rosbridge-tools (0.7.5-0saucy) saucy; urgency=high
+
+  * Function in robridge_tools for importing tornado
+  * Remove tornado import aliases
+  * Revert "reverts back to internal tornado until fix is ready"
+    This reverts commit 49eeb1d97da154213d3170c95169b5677b329d07.
+  * Contributors: Jon Binney
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 25 Dec 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.7.3-0saucy) saucy; urgency=high
+
+  * setup.py includes all packages (fixes catkin_make install)
+  * Contributors: Russell Toris
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 14 Dec 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.7.2-0saucy) saucy; urgency=high
+
+  * alias rosbridge_tools.tornado as tornado
+  * move modules under rosbridge_tools
+  * 0.7.1
+  * update changelog
+  * seprate out third party library and ros related script
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 14 Dec 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.7.1-0saucy) saucy; urgency=high
+
+  * seprate out third party library and ros related script
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 08 Dec 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.7.0-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 01 Dec 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.8-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 04 Nov 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.7-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 21 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.6-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 20 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.5-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 13 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.4-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 07 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.3-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 06 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.2-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 05 Oct 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.1-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 31 Aug 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.6.0-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 22 May 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.6-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 21 May 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.5-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 06 May 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.4-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 16 Apr 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.3-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 27 Mar 2014 23:33:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.2-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 13 Mar 2014 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.1-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 30 Oct 2013 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.5.0-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 16 Jul 2013 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.5-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Fri, 28 Mar 2014 00:19:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.4-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 07 Apr 2013 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.3-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 02 Apr 2013 23:24:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.2-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 02 Apr 2013 23:12:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.1-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 06 Mar 2013 15:00:00 -0000
+
+ros-indigo-rosbridge-tools (0.4.0-0saucy) saucy; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 04 Mar 2013 15:00:00 -0000
+
+
