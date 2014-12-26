@@ -1,0 +1,12 @@
+Source: ros-indigo-rosbridge-tools
+Section: misc
+Priority: extra
+Maintainer: Russell Toris <rctoris@wpi.edu>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: http://ros.org/wiki/rosbridge_server
+Standards-Version: 3.9.2
+
+Package: ros-indigo-rosbridge-tools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: Third party libraries(backports and tornado) used for Robot Webtools.
