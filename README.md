@@ -1,3 +1,29 @@
+## rosbridge_suite (indigo) - 0.7.5-0
+
+The packages in the `rosbridge_suite` repository were released into the `indigo` distro by running `/usr/bin/bloom-release rosbridge_suite -t indigo -r indigo` on `Fri, 26 Dec 2014 06:58:41 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+- `rosbridge_tools`
+
+Version of package(s) in repository `rosbridge_suite`:
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: https://github.com/RobotWebTools-release/rosbridge_suite-release.git
+- rosdistro version: `0.7.4-0`
+- old version: `0.7.4-0`
+- new version: `0.7.5-0`
+
+Versions of tools used:
+- bloom version: `0.5.16`
+- catkin_pkg version: `0.2.6`
+- rosdep version: `0.11.0`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.36`
+
+
 ## rosbridge_suite (indigo) - 0.7.4-0
 
 The packages in the `rosbridge_suite` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo rosbridge_suite` on `Tue, 16 Dec 2014 15:01:45 -0000`
