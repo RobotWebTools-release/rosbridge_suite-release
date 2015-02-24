@@ -23,6 +23,11 @@ Changelog for package rosapi
 0.7.0 (2014-12-02)
 ------------------
 
+0.7.9 (2015-02-24)
+------------------
+* add findding service function as specific service type
+* Contributors: dwlee
+
 0.7.8 (2015-01-16)
 ------------------
 
