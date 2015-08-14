@@ -1,3 +1,28 @@
+## rosbridge_suite (hydro) - 0.7.13-0
+
+The packages in the `rosbridge_suite` repository were released into the `hydro` distro by running `/usr/bin/bloom-release --rosdistro hydro --track hydro rosbridge_suite` on `Fri, 14 Aug 2015 17:45:59 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: https://github.com/RobotWebTools-release/rosbridge_suite-release.git
+- rosdistro version: `0.7.8-0`
+- old version: `0.7.8-0`
+- new version: `0.7.13-0`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.8`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.2`
+- vcstools version: `0.1.36`
+
+
 ## rosbridge_suite (indigo) - 0.7.13-0
 
 The packages in the `rosbridge_suite` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo rosbridge_suite` on `Fri, 14 Aug 2015 17:42:02 -0000`
