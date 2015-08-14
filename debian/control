@@ -1,0 +1,12 @@
+Source: ros-hydro-rosbridge-library
+Section: misc
+Priority: extra
+Maintainer: Russell Toris <rctoris@wpi.edu>
+Build-Depends: debhelper (>= 9.0.0), python-bson, python-imaging, ros-hydro-actionlib-msgs, ros-hydro-catkin, ros-hydro-diagnostic-msgs, ros-hydro-geometry-msgs, ros-hydro-message-generation, ros-hydro-nav-msgs, ros-hydro-rospy, ros-hydro-rospy-tutorials, ros-hydro-sensor-msgs, ros-hydro-std-msgs, ros-hydro-std-srvs, ros-hydro-stereo-msgs, ros-hydro-tf2-msgs, ros-hydro-trajectory-msgs, ros-hydro-visualization-msgs
+Homepage: http://ros.org/wiki/rosbridge_library
+Standards-Version: 3.9.2
+
+Package: ros-hydro-rosbridge-library
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-bson, python-imaging, ros-hydro-geometry-msgs, ros-hydro-message-runtime, ros-hydro-roscpp, ros-hydro-rosgraph, ros-hydro-rospy, ros-hydro-rosservice, ros-hydro-rostopic, ros-hydro-std-msgs
+Description: The core rosbridge package, repsonsible for interpreting JSON andperforming the appropriate ROS action, like subscribe, publish, call service, and interact with params.
