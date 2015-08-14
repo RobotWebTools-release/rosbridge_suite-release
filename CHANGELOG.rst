@@ -44,6 +44,35 @@ Changelog for package rosbridge_server
 0.7.0 (2014-12-02)
 ------------------
 
+0.7.13 (2015-08-14)
+-------------------
+* Add bson encoding to the server side
+* Add default strings for certfile and keyfile
+  This allows downstream packages with roslaunch_add_file_check tests to pass.
+* Fix whitespace in RosbridgeTcpHandler
+* Modularize RosbridgeTcpSocket
+* Modularize RosbridgeWebSocket
+* add shutdown handling to rosbridge_tcp and make rosbridge_websocket more robust
+* Removed space from empty line.
+  Thanks @T045T
+* Stop IOLoop on shutdown.
+* Contributors: Benny, David Lu, Matt Vollrath, Nils Berg, Paul Bovbel
+
+0.7.12 (2015-04-07)
+-------------------
+
+0.7.11 (2015-03-23)
+-------------------
+* rename rosapi script to rosapi_node to address `#170 <https://github.com/RobotWebTools/rosbridge_suite/issues/170>`_
+* Enabled TCP nodelay in Websocket handler
+* Contributors: Jihoon Lee, Sebastien Mamessier
+
+0.7.10 (2015-02-25)
+-------------------
+
+0.7.9 (2015-02-24)
+------------------
+
 0.7.8 (2015-01-16)
 ------------------
 * Fix path to Tornado speedup extension source
