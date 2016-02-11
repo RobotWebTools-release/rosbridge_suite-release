@@ -1,3 +1,28 @@
+## rosbridge_suite (jade) - 0.7.14-0
+
+The packages in the `rosbridge_suite` repository were released into the `jade` distro by running `/usr/bin/bloom-release rosbridge_suite -t jade -r jade` on `Thu, 11 Feb 2016 12:01:57 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: https://github.com/RobotWebTools-release/rosbridge_suite-release.git
+- rosdistro version: `0.7.13-0`
+- old version: `0.7.13-0`
+- new version: `0.7.14-0`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.4`
+- vcstools version: `0.1.38`
+
+
 ## rosbridge_suite (indigo) - 0.7.14-0
 
 The packages in the `rosbridge_suite` repository were released into the `indigo` distro by running `/usr/bin/bloom-release rosbridge_suite -t indigo -r indigo` on `Thu, 11 Feb 2016 11:50:31 -0000`
