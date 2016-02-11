@@ -1,0 +1,249 @@
+ros-jade-rosapi (0.7.14-0vivid) vivid; urgency=high
+
+  * Update proxy.py
+    Fixes an issue when call the service "/rosapi/service_type"
+  * Contributors: Robert Codd-Downey
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 10 Feb 2016 15:00:00 -0000
+
+ros-jade-rosapi (0.7.13-0vivid) vivid; urgency=high
+
+  * Fix catkin_lint issues
+  * Contributors: Matt Vollrath
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 13 Aug 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.12-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 06 Apr 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.11-0vivid) vivid; urgency=high
+
+  * rename rosapi script to rosapi_node to address #170 <https://github.com/RobotWebTools/rosbridge_suite/issues/170>
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 22 Mar 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.10-0vivid) vivid; urgency=high
+
+  * Make get_topics() and get_topic_type() reference the full list of active topics.
+  * Contributors: Justin Huang
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 24 Feb 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.9-0vivid) vivid; urgency=high
+
+  * add findding service function as specific service type
+  * Contributors: dwlee
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 23 Feb 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.8-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 15 Jan 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.7-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 05 Jan 2015 15:00:00 -0000
+
+ros-jade-rosapi (0.7.6-0vivid) vivid; urgency=high
+
+  * 0.7.5
+  * update changelog
+  * 0.7.4
+  * changelog updated
+  * 0.7.3
+  * changelog updated
+  * 0.7.2
+  * changelog updated
+  * 0.7.1
+  * update changelog
+  * 0.7.0
+  * changelog updated
+  * Contributors: Jihoon Lee, Russell Toris
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 25 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.5-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 25 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.4-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 15 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.3-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 14 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.2-0vivid) vivid; urgency=high
+
+  * 0.7.1
+  * update changelog
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 14 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.1-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 08 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.7.0-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 01 Dec 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.8-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 04 Nov 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.7-0vivid) vivid; urgency=high
+
+  * updated package manifests
+  * Contributors: Russell Toris
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 21 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.6-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 20 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.5-0vivid) vivid; urgency=high
+
+  * 0.6.4
+  * update changelog
+  * 0.6.3
+  * update change log
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 13 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.4-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 07 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.3-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 06 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.2-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 05 Oct 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.1-0vivid) vivid; urgency=high
+
+  * make rosapis use absolute namespace
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 31 Aug 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.6.0-0vivid) vivid; urgency=high
+
+  * Ensure proper locking for Parameter Server access
+  * Contributors: Lasse Rasinen
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 22 May 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.5.4-0vivid) vivid; urgency=high
+
+  * add rosnode and rosgraph
+  * Contributors: Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 16 Apr 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.5.3-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 27 Mar 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.5.2-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Thu, 13 Mar 2014 15:00:00 -0000
+
+ros-jade-rosapi (0.5.1-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 30 Oct 2013 15:00:00 -0000
+
+ros-jade-rosapi (0.5.0-0vivid) vivid; urgency=high
+
+  * 0.5.0 preparation for hydro release
+  * Removes trailing commas.
+  * removing global bin installation in setup.py
+  * Contributors: Brandon Alexander, Jihoon Lee
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 16 Jul 2013 15:00:00 -0000
+
+ros-jade-rosapi (0.4.4-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Sun, 07 Apr 2013 15:00:00 -0000
+
+ros-jade-rosapi (0.4.3-0vivid) vivid; urgency=high
+
+
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 02 Apr 2013 23:24:00 -0000
+
+ros-jade-rosapi (0.4.2-0vivid) vivid; urgency=high
+
+  * eclipse projects removed
+  * Contributors: Russell Toris
+
+ -- Russell Toris <rctoris@wpi.edu>  Tue, 02 Apr 2013 23:12:00 -0000
+
+ros-jade-rosapi (0.4.1-0vivid) vivid; urgency=high
+
+  * fixes import issue in rosapi
+  * Contributors: Russell Toris
+
+ -- Russell Toris <rctoris@wpi.edu>  Wed, 06 Mar 2013 15:00:00 -0000
+
+ros-jade-rosapi (0.4.0-0vivid) vivid; urgency=high
+
+  * Fixes ambiguous params class reference.
+  * Uses only 1 .gitignore to avoid confusion.
+  * Fixing rosapi's "Cannot include proxy..." errors.
+  * Adds BSD license header to code files.
+    See Issue #13 <https://github.com/RobotWebTools/rosbridge_suite/issues/13>.
+  * rosbridge_server requires rosapi.
+  * Adds message and service generation to rosapi.
+  * Adding setup.py to rosapi.
+  * Clarifies name of rosapi is rosapi.
+  * Catkinizes rosapi.
+  * Collapse directory structure.
+  * Contributors: Austin Hendrix, Brandon Alexander
+
+ -- Russell Toris <rctoris@wpi.edu>  Mon, 04 Mar 2013 15:00:00 -0000
+
+
