@@ -1,0 +1,12 @@
+Source: ros-indigo-rosbridge-library
+Section: misc
+Priority: extra
+Maintainer: Russell Toris <rctoris@wpi.edu>
+Build-Depends: debhelper (>= 9.0.0), python-bson, python-imaging, ros-indigo-actionlib-msgs, ros-indigo-catkin, ros-indigo-diagnostic-msgs, ros-indigo-geometry-msgs, ros-indigo-message-generation, ros-indigo-nav-msgs, ros-indigo-rospy, ros-indigo-rospy-tutorials, ros-indigo-sensor-msgs, ros-indigo-std-msgs, ros-indigo-std-srvs, ros-indigo-stereo-msgs, ros-indigo-tf2-msgs, ros-indigo-trajectory-msgs, ros-indigo-visualization-msgs
+Homepage: http://ros.org/wiki/rosbridge_library
+Standards-Version: 3.9.2
+
+Package: ros-indigo-rosbridge-library
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-bson, python-imaging, ros-indigo-geometry-msgs, ros-indigo-message-runtime, ros-indigo-roscpp, ros-indigo-rosgraph, ros-indigo-rospy, ros-indigo-rosservice, ros-indigo-rostopic, ros-indigo-std-msgs
+Description: The core rosbridge package, repsonsible for interpreting JSON andperforming the appropriate ROS action, like subscribe, publish, call service, and interact with params.
