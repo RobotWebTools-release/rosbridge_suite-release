@@ -2,6 +2,21 @@
 Changelog for package rosbridge_server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.15 (2016-04-25)
+-------------------
+* Track Twisted run_depend
+  Fixes `#218 <https://github.com/RobotWebTools/rosbridge_suite/issues/218>`_
+* Contributors: Matt Vollrath
+
+Forthcoming
+-----------
+* Add rosbridge_udp cmake install rule `#225 <https://github.com/RobotWebTools/rosbridge_suite/issues/225>`_
+* Stop UDP server on ROS shutdown
+* changelog updated
+* Track Twisted run_depend
+  Fixes `#218 <https://github.com/RobotWebTools/rosbridge_suite/issues/218>`_
+* Contributors: Jihoon Lee, Matt Vollrath, Russell Toris
+
 0.7.14 (2016-02-11)
 -------------------
 * Abort websocket server listen() retry on shutdown
