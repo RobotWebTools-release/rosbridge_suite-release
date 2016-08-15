@@ -2,11 +2,13 @@
 Changelog for package rosapi
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.16 (2016-08-15)
+-------------------
+* new srv: topics types and details
+* Contributors: Marco Arruda
+
 0.7.15 (2016-04-25)
 -------------------
-
-Forthcoming
------------
 * changelog updated
 * Contributors: Russell Toris
 
