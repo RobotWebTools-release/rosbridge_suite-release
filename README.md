@@ -1,3 +1,30 @@
+## rosbridge_suite (kinetic) - 0.8.1-2
+
+The packages in the `rosbridge_suite` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release rosbridge_suite --track kinetic --ros-distro kinetic` on `Wed, 30 Aug 2017 15:44:36 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: https://github.com/RobotWebTools-release/rosbridge_suite-release.git
+- rosdistro version: `0.8.1-0`
+- old version: `0.8.1-1`
+- new version: `0.8.1-2`
+
+Versions of tools used:
+
+- bloom version: `0.5.26`
+- catkin_pkg version: `0.3.6`
+- rosdep version: `0.11.8`
+- rosdistro version: `0.6.2`
+- vcstools version: `0.1.39`
+
+
 ## rosbridge_suite (kinetic) - 0.8.1-1
 
 The packages in the `rosbridge_suite` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release rosbridge_suite --ros-distro kinetic --track kinetic` on `Wed, 30 Aug 2017 13:54:34 -0000`
