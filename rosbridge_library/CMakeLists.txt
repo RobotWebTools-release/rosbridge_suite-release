@@ -48,5 +48,8 @@ catkin_package(
 )
 
 # Test launch files
-# add_rostest(test/test_all.test)
-
+if (CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest(test/capabilities/test_capabilities.test)
+  add_rostest(test/internal/test_internal.test)
+endif()
