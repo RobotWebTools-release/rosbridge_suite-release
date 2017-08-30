@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>rosbridge_library</name>
-  <version>0.7.17</version>
+  <version>0.8.1</version>
   <description>
     The core rosbridge package, repsonsible for interpreting JSON andperforming
     the appropriate ROS action, like subscribe, publish, call service, and
@@ -38,6 +38,7 @@
   <run_depend>message_runtime</run_depend>
   <run_depend>python-bson</run_depend>
 
+  <test_depend>rostest</test_depend>
   <test_depend>actionlib_msgs</test_depend>
   <test_depend>diagnostic_msgs</test_depend>
   <test_depend>nav_msgs</test_depend>
