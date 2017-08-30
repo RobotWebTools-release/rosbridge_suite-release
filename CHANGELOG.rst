@@ -2,6 +2,19 @@
 Changelog for package rosapi
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.1 (2017-08-30)
+------------------
+
+0.8.0 (2017-08-30)
+------------------
+* fix delete_param in rosapi (`#284 <https://github.com/RobotWebTools/rosbridge_suite/issues/284>`_)
+* Merge pull request `#276 <https://github.com/RobotWebTools/rosbridge_suite/issues/276>`_ from sevenbitbyte/DOCUMENT_GLOB
+  Document glob
+* Update README.md
+  Formatting and examples
+* Create README.md
+* Contributors: 7bit, Jihoon Lee
+
 0.7.17 (2017-01-25)
 -------------------
 * Added bug fix in rosapi
