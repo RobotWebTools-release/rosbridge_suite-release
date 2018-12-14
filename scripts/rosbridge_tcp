@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from rospy import init_node, get_param, loginfo, logerr, on_shutdown
+from __future__ import print_function
+from rospy import init_node, get_param, loginfo, logerr, on_shutdown, Publisher
 from rosbridge_server import RosbridgeTcpSocket
 
 from rosbridge_library.capabilities.advertise import Advertise
@@ -12,8 +13,13 @@ from rosbridge_library.capabilities.call_service import CallService
 
 from functools import partial
 from signal import signal, SIGINT, SIG_DFL
+from std_msgs.msg import Int32
 
-import SocketServer
+try:
+    import SocketServer
+except ImportError:
+    import socketserver as SocketServer
+
 import sys
 import time
 
@@ -30,9 +36,9 @@ if __name__ == "__main__":
     retry_count = 0
     while not loaded:
         retry_count += 1
-        print "trying to start rosbridge TCP server.."
+        print("trying to start rosbridge TCP server..")
         try:
-            print ""
+            print("")
             init_node("rosbridge_tcp")
             signal(SIGINT, SIG_DFL)
 
@@ -56,6 +62,7 @@ if __name__ == "__main__":
             fragment_timeout = get_param('~fragment_timeout', RosbridgeTcpSocket.fragment_timeout)
             delay_between_messages = get_param('~delay_between_messages', RosbridgeTcpSocket.delay_between_messages)
             max_message_size = get_param('~max_message_size', RosbridgeTcpSocket.max_message_size)
+            unregister_timeout = get_param('~unregister_timeout', RosbridgeTcpSocket.unregister_timeout)
             bson_only_mode = get_param('~bson_only_mode', False)
 
             if max_message_size == "None":
@@ -74,7 +81,11 @@ if __name__ == "__main__":
                     element.strip().strip("'")
                     for element in get_param('~params_glob', '')[1:-1].split(',')
                     if len(element.strip().strip("'")) > 0]
-        
+            
+            # Publisher for number of connected clients
+            RosbridgeTcpSocket.client_count_pub = Publisher('client_count', Int32, queue_size=10, latch=True)
+            RosbridgeTcpSocket.client_count_pub.publish(0)
+
             # update parameters if provided via commandline
             # .. could implemented 'better' (value/type checking, etc.. )
             if "--port" in sys.argv:
@@ -82,7 +93,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     port = int(sys.argv[idx])
                 else:
-                    print "--port argument provided without a value."
+                    print("--port argument provided without a value.")
                     sys.exit(-1)
 
             if "--host" in sys.argv:
@@ -90,7 +101,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     host = str(sys.argv[idx])
                 else:
-                    print "--host argument provided without a value."
+                    print("--host argument provided without a value.")
                     sys.exit(-1)
 
             if "--incoming_buffer" in sys.argv:
@@ -98,7 +109,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     incoming_buffer = int(sys.argv[idx])
                 else:
-                    print "--incoming_buffer argument provided without a value."
+                    print("--incoming_buffer argument provided without a value.")
                     sys.exit(-1)
 
             if "--socket_timeout" in sys.argv:
@@ -106,7 +117,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     socket_timeout = int(sys.argv[idx])
                 else:
-                    print "--socket_timeout argument provided without a value."
+                    print("--socket_timeout argument provided without a value.")
                     sys.exit(-1)
 
             if "--retry_startup_delay" in sys.argv:
@@ -114,7 +125,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     retry_startup_delay = int(sys.argv[idx])
                 else:
-                    print "--retry_startup_delay argument provided without a value."
+                    print("--retry_startup_delay argument provided without a value.")
                     sys.exit(-1)
 
             if "--fragment_timeout" in sys.argv:
@@ -122,7 +133,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     fragment_timeout = int(sys.argv[idx])
                 else:
-                    print "--fragment_timeout argument provided without a value."
+                    print("--fragment_timeout argument provided without a value.")
                     sys.exit(-1)
 
             if "--delay_between_messages" in sys.argv:
@@ -130,7 +141,7 @@ if __name__ == "__main__":
                 if idx < len(sys.argv):
                     delay_between_messages = float(sys.argv[idx])
                 else:
-                    print "--delay_between_messages argument provided without a value."
+                    print("--delay_between_messages argument provided without a value.")
                     sys.exit(-1)
 
             if "--max_message_size" in sys.argv:
@@ -142,7 +153,15 @@ if __name__ == "__main__":
                     else:
                         max_message_size = int(value)
                 else:
-                    print "--max_message_size argument provided without a value. (can be None or <Integer>)"
+                    print("--max_message_size argument provided without a value. (can be None or <Integer>)")
+                    sys.exit(-1)
+
+            if "--unregister_timeout" in sys.argv:
+                idx = sys.argv.index("--unregister_timeout") + 1
+                if idx < len(sys.argv):
+                    unregister_timeout = float(sys.argv[idx])
+                else:
+                    print("--unregister_timeout argument provided without a value.")
                     sys.exit(-1)
 
             # export parameters to handler class
@@ -151,6 +170,7 @@ if __name__ == "__main__":
             RosbridgeTcpSocket.fragment_timeout = fragment_timeout
             RosbridgeTcpSocket.delay_between_messages = delay_between_messages
             RosbridgeTcpSocket.max_message_size = max_message_size
+            RosbridgeTcpSocket.unregister_timeout = unregister_timeout
             RosbridgeTcpSocket.bson_only_mode = bson_only_mode
 
 
@@ -163,7 +183,7 @@ if __name__ == "__main__":
                     else:
                         RosbridgeTcpSocket.topics_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
                 else:
-                    print "--topics_glob argument provided without a value. (can be None or a list)"
+                    print("--topics_glob argument provided without a value. (can be None or a list)")
                     sys.exit(-1)
 
             if "--services_glob" in sys.argv:
@@ -175,7 +195,7 @@ if __name__ == "__main__":
                     else:
                         RosbridgeTcpSocket.services_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
                 else:
-                    print "--services_glob argument provided without a value. (can be None or a list)"
+                    print("--services_glob argument provided without a value. (can be None or a list)")
                     sys.exit(-1)
 
             if "--params_glob" in sys.argv:
@@ -187,7 +207,7 @@ if __name__ == "__main__":
                     else:
                         RosbridgeTcpSocket.params_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
                 else:
-                    print "--params_glob argument provided without a value. (can be None or a list)"
+                    print("--params_glob argument provided without a value. (can be None or a list)")
                     sys.exit(-1)
 
             if "--bson_only_mode" in sys.argv:
@@ -219,6 +239,6 @@ if __name__ == "__main__":
 
             server.serve_forever()
             loaded = True
-        except Exception, e:
+        except Exception as e:
             time.sleep(retry_startup_delay)
-    print "server loaded"
+    print("server loaded")
