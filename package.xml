@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>rosbridge_suite</name>
-  <version>0.8.4</version>
+  <version>0.10.0</version>
   <description>
     Rosbridge provides a JSON API to ROS functionality for non-ROS programs.
     There are a variety of front ends that interface with rosbridge, including
@@ -23,9 +23,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>rosbridge_library</run_depend>
-  <run_depend>rosbridge_server</run_depend>
-  <run_depend>rosapi</run_depend>
+  <exec_depend>rosbridge_library</exec_depend>
+  <exec_depend>rosbridge_server</exec_depend>
+  <exec_depend>rosapi</exec_depend>
 
   <export>
     <metapackage/>
