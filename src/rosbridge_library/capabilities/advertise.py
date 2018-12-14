@@ -34,6 +34,7 @@
 import fnmatch
 from rosbridge_library.capability import Capability
 from rosbridge_library.internal.publishers import manager
+from rosbridge_library.util import string_types
 
 
 class Registration():
@@ -73,8 +74,8 @@ class Registration():
 
 class Advertise(Capability):
 
-    advertise_msg_fields = [(True, "topic", (str, unicode)), (True, "type", (str, unicode))]
-    unadvertise_msg_fields = [(True, "topic", (str, unicode))]
+    advertise_msg_fields = [(True, "topic", string_types), (True, "type", string_types)]
+    unadvertise_msg_fields = [(True, "topic", string_types)]
 
     topics_glob = None
 
@@ -88,6 +89,9 @@ class Advertise(Capability):
 
         # Initialize class variables
         self._registrations = {}
+
+        if protocol.parameters and "unregister_timeout" in protocol.parameters:
+            manager.unregister_timeout = protocol.parameters.get("unregister_timeout")
 
     def advertise(self, message):
         # Pull out the ID
