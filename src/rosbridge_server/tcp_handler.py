@@ -2,7 +2,10 @@ import rospy
 import struct
 from rosbridge_library.rosbridge_protocol import RosbridgeProtocol
 
-import SocketServer
+try:
+    import SocketServer
+except ImportError:
+    import socketserver as SocketServer
 
 class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
     """
@@ -13,6 +16,7 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
     queue = []
     client_id_seed = 0
     clients_connected = 0
+    client_count_pub = None
 
     # list of parameters
     incoming_buffer = 65536                 # bytes
@@ -23,6 +27,7 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
     # protocol.py:
     delay_between_messages = 0              # seconds
     max_message_size = None                 # bytes
+    unregister_timeout = 10.0               # seconds
     bson_only_mode = False
 
     def setup(self):
@@ -31,6 +36,7 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
             "fragment_timeout": cls.fragment_timeout,
             "delay_between_messages": cls.delay_between_messages,
             "max_message_size": cls.max_message_size,
+            "unregister_timeout": cls.unregister_timeout,
             "bson_only_mode": cls.bson_only_mode
         }
 
@@ -39,6 +45,8 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
             self.protocol.outgoing = self.send_message
             cls.client_id_seed += 1
             cls.clients_connected += 1
+            if cls.client_count_pub:
+                cls.client_count_pub.publish(cls.clients_connected)
             self.protocol.log("info", "connected. " + str(cls.clients_connected) + " client total.")
         except Exception as exc:
             rospy.logerr("Unable to accept incoming connection.  Reason: %s", str(exc))
@@ -98,7 +106,7 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
                   self.protocol.incoming(data.strip(''))
               else:
                   pass
-            except Exception, e:
+            except Exception as e:
                 pass
                 self.protocol.log("debug", "socket connection timed out! (ignore warning if client is only listening..)")
 
@@ -109,10 +117,12 @@ class RosbridgeTcpSocket(SocketServer.BaseRequestHandler):
         cls = self.__class__
         cls.clients_connected -= 1
         self.protocol.finish()
+        if cls.client_count_pub:
+            cls.client_count_pub.publish(cls.clients_connected)
         self.protocol.log("info", "disconnected. " + str(cls.clients_connected) + " client total." )
 
     def send_message(self, message=None):
         """
         Callback from rosbridge
         """
-        self.request.send(message)
+        self.request.sendall(message)

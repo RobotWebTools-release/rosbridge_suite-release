@@ -31,6 +31,7 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from __future__ import print_function
 import rospy
 import sys
 
@@ -49,6 +50,8 @@ from rosbridge_library.capabilities.advertise_service import AdvertiseService
 from rosbridge_library.capabilities.unadvertise_service import UnadvertiseService
 from rosbridge_library.capabilities.call_service import CallService
 
+from std_msgs.msg import Int32
+
 def shutdown_hook():
     IOLoop.instance().stop()
 
@@ -61,6 +64,8 @@ if __name__ == "__main__":
     ##################################################
     retry_startup_delay = rospy.get_param('~retry_startup_delay', 2.0)  # seconds
 
+    RosbridgeWebSocket.use_compression = rospy.get_param('~use_compression', False)
+
     # get RosbridgeProtocol parameters
     RosbridgeWebSocket.fragment_timeout = rospy.get_param('~fragment_timeout',
                                                           RosbridgeWebSocket.fragment_timeout)
@@ -68,6 +73,8 @@ if __name__ == "__main__":
                                                                 RosbridgeWebSocket.delay_between_messages)
     RosbridgeWebSocket.max_message_size = rospy.get_param('~max_message_size',
                                                           RosbridgeWebSocket.max_message_size)
+    RosbridgeWebSocket.unregister_timeout = rospy.get_param('~unregister_timeout',
+                                                          RosbridgeWebSocket.unregister_timeout)
     bson_only_mode = rospy.get_param('~bson_only_mode', False)
 
     if RosbridgeWebSocket.max_message_size == "None":
@@ -80,6 +87,9 @@ if __name__ == "__main__":
     RosbridgeWebSocket.authenticate = rospy.get_param('~authenticate', False)
     port = rospy.get_param('~port', 9090)
     address = rospy.get_param('~address', "")
+    # Publisher for number of connected clients
+    RosbridgeWebSocket.client_count_pub = rospy.Publisher('client_count', Int32, queue_size=10, latch=True)
+    RosbridgeWebSocket.client_count_pub.publish(0)
 
     # Get the glob strings and parse them as arrays.
     RosbridgeWebSocket.topics_glob = [
@@ -100,7 +110,7 @@ if __name__ == "__main__":
         if idx < len(sys.argv):
             port = int(sys.argv[idx])
         else:
-            print "--port argument provided without a value."
+            print("--port argument provided without a value.")
             sys.exit(-1)
 
     if "--address" in sys.argv:
@@ -108,7 +118,7 @@ if __name__ == "__main__":
         if idx < len(sys.argv):
             address = int(sys.argv[idx])
         else:
-            print "--address argument provided without a value."
+            print("--address argument provided without a value.")
             sys.exit(-1)
 
     if "--retry_startup_delay" in sys.argv:
@@ -116,7 +126,7 @@ if __name__ == "__main__":
         if idx < len(sys.argv):
             retry_startup_delay = int(sys.argv[idx])
         else:
-            print "--retry_startup_delay argument provided without a value."
+            print("--retry_startup_delay argument provided without a value.")
             sys.exit(-1)
 
     if "--fragment_timeout" in sys.argv:
@@ -124,7 +134,7 @@ if __name__ == "__main__":
         if idx < len(sys.argv):
             RosbridgeWebSocket.fragment_timeout = int(sys.argv[idx])
         else:
-            print "--fragment_timeout argument provided without a value."
+            print("--fragment_timeout argument provided without a value.")
             sys.exit(-1)
 
     if "--delay_between_messages" in sys.argv:
@@ -132,7 +142,7 @@ if __name__ == "__main__":
         if idx < len(sys.argv):
             RosbridgeWebSocket.delay_between_messages = float(sys.argv[idx])
         else:
-            print "--delay_between_messages argument provided without a value."
+            print("--delay_between_messages argument provided without a value.")
             sys.exit(-1)
 
     if "--max_message_size" in sys.argv:
@@ -144,7 +154,15 @@ if __name__ == "__main__":
             else:
                 RosbridgeWebSocket.max_message_size = int(value)
         else:
-            print "--max_message_size argument provided without a value. (can be None or <Integer>)"
+            print("--max_message_size argument provided without a value. (can be None or <Integer>)")
+            sys.exit(-1)
+
+    if "--unregister_timeout" in sys.argv:
+        idx = sys.argv.index("--unregister_timeout") + 1
+        if idx < len(sys.argv):
+            unregister_timeout = float(sys.argv[idx])
+        else:
+            print("--unregister_timeout argument provided without a value.")
             sys.exit(-1)
 
     if "--topics_glob" in sys.argv:
@@ -156,7 +174,7 @@ if __name__ == "__main__":
             else:
                 RosbridgeWebSocket.topics_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
         else:
-            print "--topics_glob argument provided without a value. (can be None or a list)"
+            print("--topics_glob argument provided without a value. (can be None or a list)")
             sys.exit(-1)
 
     if "--services_glob" in sys.argv:
@@ -168,7 +186,7 @@ if __name__ == "__main__":
             else:
                 RosbridgeWebSocket.services_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
         else:
-            print "--services_glob argument provided without a value. (can be None or a list)"
+            print("--services_glob argument provided without a value. (can be None or a list)")
             sys.exit(-1)
 
     if "--params_glob" in sys.argv:
@@ -180,11 +198,11 @@ if __name__ == "__main__":
             else:
                 RosbridgeWebSocket.params_glob = [element.strip().strip("'") for element in value[1:-1].split(',')]
         else:
-            print "--params_glob argument provided without a value. (can be None or a list)"
+            print("--params_glob argument provided without a value. (can be None or a list)")
             sys.exit(-1)
 
     if ("--bson_only_mode" in sys.argv) or bson_only_mode:
-        print "bson_only_mode is only supported in the TCP Version of Rosbridge currently. Ignoring bson_only_mode argument..."
+        RosbridgeWebSocket.bson_only_mode = bson_only_mode
 
     # To be able to access the list of topics and services, you must be able to access the rosapi services.
     if RosbridgeWebSocket.services_glob:
