@@ -34,11 +34,12 @@
 import fnmatch
 from rosbridge_library.capability import Capability
 from rosbridge_library.internal.publishers import manager
+from rosbridge_library.util import string_types
 
 
 class Publish(Capability):
 
-    publish_msg_fields = [(True, "topic", (str, unicode))]
+    publish_msg_fields = [(True, "topic", string_types)]
 
     topics_glob = None
 
@@ -51,6 +52,9 @@ class Publish(Capability):
 
         # Save the topics that are published on for the purposes of unregistering
         self._published = {}
+
+        if protocol.parameters and "unregister_timeout" in protocol.parameters:
+            manager.unregister_timeout = protocol.parameters.get("unregister_timeout")
 
     def publish(self, message):
         # Do basic type checking
@@ -83,7 +87,7 @@ class Publish(Capability):
 
         # Publish the message
         manager.publish(client_id, topic, msg, latch=latch, queue_size=queue_size)
- 
+
     def finish(self):
         client_id = self.protocol.client_id
         for topic in self._published:
