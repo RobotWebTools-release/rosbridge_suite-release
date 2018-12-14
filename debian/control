@@ -1,0 +1,12 @@
+Source: ros-lunar-rosbridge-library
+Section: misc
+Priority: extra
+Maintainer: Russell Toris <rctoris@wpi.edu>
+Build-Depends: debhelper (>= 9.0.0), python-bson, python-cbor, python-imaging, ros-lunar-actionlib-msgs, ros-lunar-catkin, ros-lunar-diagnostic-msgs, ros-lunar-geometry-msgs, ros-lunar-message-generation, ros-lunar-nav-msgs, ros-lunar-rospy-tutorials, ros-lunar-rostest, ros-lunar-sensor-msgs, ros-lunar-std-msgs, ros-lunar-std-srvs, ros-lunar-stereo-msgs, ros-lunar-tf2-msgs, ros-lunar-trajectory-msgs, ros-lunar-visualization-msgs
+Homepage: http://ros.org/wiki/rosbridge_library
+Standards-Version: 3.9.2
+
+Package: ros-lunar-rosbridge-library
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-bson, python-cbor, python-imaging, ros-lunar-geometry-msgs, ros-lunar-message-runtime, ros-lunar-roscpp, ros-lunar-rosgraph, ros-lunar-rospy, ros-lunar-rosservice, ros-lunar-rostopic, ros-lunar-std-msgs
+Description: The core rosbridge package, repsonsible for interpreting JSON andperforming the appropriate ROS action, like subscribe, publish, call service, and interact with params.
