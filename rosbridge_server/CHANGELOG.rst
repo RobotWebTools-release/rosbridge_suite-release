@@ -2,6 +2,76 @@
 Changelog for package rosbridge_server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.10.0 (2018-12-14)
+-------------------
+* CBOR encoding (`#364 <https://github.com/RobotWebTools/rosbridge_suite/issues/364>`_)
+  * Add CBOR encoding
+  * Fix value extraction performance regression
+  Extract message values once per message.
+  * Fix typed array tags
+  Was using big-endian tags and encoding little-endian.
+  Always use little-endian for now since Intel is prevalent for desktop.
+  Add some comments to this effect.
+  * Update CBOR protocol documentation
+  More information about draft typed arrays and when to use CBOR.
+  * Fix 64-bit integer CBOR packing
+  Use an actual 64-bit format.
+* Add param to enable ws per-message deflate (`#365 <https://github.com/RobotWebTools/rosbridge_suite/issues/365>`_)
+  * Add param to enable ws per-message deflate
+  Tornado has its own per-message deflate compression option, which
+  compresses each WebSocket message.  The compression level should be
+  roughly equivalent to PNG compression, depending on whether the message is
+  JSON or binary (CBOR).  The encoding/decoding time will be much faster
+  than protocol PNG compression.
+  This param should be enabled when wire size is important, e.g. not
+  connecting to localhost.
+* rosbridge_server: Publish number of connected clients on latched topic. (`#359 <https://github.com/RobotWebTools/rosbridge_suite/issues/359>`_)
+* Fix a few problems (`#350 <https://github.com/RobotWebTools/rosbridge_suite/issues/350>`_)
+  * xrange is not available in Python3, range works for both Python versions
+  * the variable v is undefined in search_param, comparing the implementation with the sibling functions I expect name to be the intended variable
+  * The module udp_handler is using the Authentication service but wasn't importing the module
+* use package format 2, remove unnecessary dependencies (`#348 <https://github.com/RobotWebTools/rosbridge_suite/issues/348>`_)
+* Adding bson support for websockets (`#327 <https://github.com/RobotWebTools/rosbridge_suite/issues/327>`_)
+  * removed message that bson isn't supported. setting the bson only mode class attribute
+  * added auth package inspection for bson only mode
+* Contributors: Dirk Thomas, Hans-Joachim Krauch, Matt Vollrath, Sanic
+
+0.9.0 (2018-04-09)
+------------------
+* Make unregister_timeout configurable (`#322 <https://github.com/RobotWebTools/rosbridge_suite/issues/322>`_)
+  Pull request `#247 <https://github.com/RobotWebTools/rosbridge_suite/issues/247>`_ introduces a 10 second delay to mitigate issue `#138 <https://github.com/RobotWebTools/rosbridge_suite/issues/138>`_.
+  This change makes this delay configurable by passing an argument either
+  on the command line or when including a launch file.
+  Usage example:
+  ```xml
+  <launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+  <arg name="unregister_timeout" value="5.0"/>
+  </include>
+  </launch>
+  ```
+  Closes `#320 <https://github.com/RobotWebTools/rosbridge_suite/issues/320>`_
+* Remove tornado fork from source code and add python-tornado as run dependency (`#317 <https://github.com/RobotWebTools/rosbridge_suite/issues/317>`_)
+  Release only for kinetic+
+* Fix bug that lost data while sending large packets (`#310 <https://github.com/RobotWebTools/rosbridge_suite/issues/310>`_)
+  * fix bug that lost data while sending large packets
+* Contributors: Jørgen Borgesen, MBlistein, WH-0501
+
+0.8.6 (2017-12-08)
+------------------
+
+0.8.5 (2017-11-23)
+------------------
+* Raise if inappropriate bson module is installed (Appease `#198 <https://github.com/RobotWebTools/rosbridge_suite/issues/198>`_) (`#270 <https://github.com/RobotWebTools/rosbridge_suite/issues/270>`_)
+  * Raise Exception if inappropriate bson module is installed (Related to `#198 <https://github.com/RobotWebTools/rosbridge_suite/issues/198>`_)
+* Add Python3 compatibility (`#300 <https://github.com/RobotWebTools/rosbridge_suite/issues/300>`_)
+  * First pass at Python 3 compatibility
+  * message_conversion: Only call encode on a Python2 str or bytes type
+  * protocol.py: Changes for dict in Python3. Compatible with Python 2 too.
+  * More Python 3 fixes, all tests pass
+  * Move definition of string_types to rosbridge_library.util
+* Contributors: Junya Hayashi, Kartik Mohta
+
 0.8.4 (2017-10-16)
 ------------------
 
@@ -299,7 +369,7 @@ Changelog for package rosbridge_server
 * add rosbridge_server with tcp socket support
 * Param bug fixed
 * SSL options added
-* Contributors: Brandon Alexander, Jihoon Lee, Russell Toris, Steffel Fénix, dave, fxm-db, ipa-fxm, root
+* Contributors: Brandon Alexander, Jihoon Lee, Russell Toris, Steffel Fenix, dave, fxm-db, ipa-fxm, root
 
 0.5.1 (2013-10-31)
 ------------------

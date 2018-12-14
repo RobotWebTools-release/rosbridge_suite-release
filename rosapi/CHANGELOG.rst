@@ -2,6 +2,39 @@
 Changelog for package rosapi
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.10.0 (2018-12-14)
+-------------------
+* Drop use of ros Python module (`#374 <https://github.com/RobotWebTools/rosbridge_suite/issues/374>`_)
+* Fixes passing of globs to proxy (`#355 <https://github.com/RobotWebTools/rosbridge_suite/issues/355>`_)
+  * Fixes handling and passing of globs to proxy
+  * Removes some confusing imports
+* Fix a few problems (`#350 <https://github.com/RobotWebTools/rosbridge_suite/issues/350>`_)
+  * xrange is not available in Python3, range works for both Python versions
+  * the variable v is undefined in search_param, comparing the implementation with the sibling functions I expect name to be the intended variable
+  * The module udp_handler is using the Authentication service but wasn't importing the module
+* use package format 2, remove unnecessary dependencies (`#348 <https://github.com/RobotWebTools/rosbridge_suite/issues/348>`_)
+* Contributors: Anwar, Dirk Thomas, Jochen Sprickerhof
+
+0.9.0 (2018-04-09)
+------------------
+
+0.8.6 (2017-12-08)
+------------------
+* Fixed action_servers filter to allow more than one namespace (`#305 <https://github.com/RobotWebTools/rosbridge_suite/issues/305>`_)
+  * Modified action_servers filter to detect topics with more than one namespace
+  * Fixed to return the full namespace
+* Contributors: milesial
+
+0.8.5 (2017-11-23)
+------------------
+* Add Python3 compatibility (`#300 <https://github.com/RobotWebTools/rosbridge_suite/issues/300>`_)
+  * First pass at Python 3 compatibility
+  * message_conversion: Only call encode on a Python2 str or bytes type
+  * protocol.py: Changes for dict in Python3. Compatible with Python 2 too.
+  * More Python 3 fixes, all tests pass
+  * Move definition of string_types to rosbridge_library.util
+* Contributors: Kartik Mohta
+
 0.8.4 (2017-10-16)
 ------------------
 * Handles empty globes properly (`#297 <https://github.com/RobotWebTools/rosbridge_suite/issues/297>`_)
