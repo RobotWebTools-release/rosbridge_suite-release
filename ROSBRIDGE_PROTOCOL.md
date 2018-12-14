@@ -141,7 +141,7 @@ concatenated, resulting in the JSON string of the original message.
 
 #### 3.1.2 PNG compression ( _png_ ) [experimental]
 
-Some messages (such as point clouds) can be extremely large, and for efficiency
+Some messages (such as images and maps) can be extremely large, and for efficiency
 reasons we may wish to transfer them as PNG-encoded bytes. The PNG opcode
 duplicates the fragmentation logic of the FRG opcode (and it is possible and
 reasonable to only have a single fragment), except that the data field consists
@@ -167,6 +167,21 @@ message and read the bytes of the string into a PNG image. Then, ASCII-encode
 the image. This string is now used as the data field. If fragmentation is
 necessary, then fragment the data and set the ID, num and total fields to the
 appropriate values in the fragments. Otherwise these fields can be left out.
+
+#### 3.1.3 CBOR encoding ( _cbor_ )
+
+[CBOR](https://tools.ietf.org/html/rfc7049) encoding is the fastest
+compression method for messages containing large blobs of data, such as
+byte arrays and numeric typed arrays.
+
+When CBOR compression is requested by a subscriber, a binary message will be
+produced instead of a JSON string.  Once decoded, the message will contain
+a normal protocol message.
+
+The implementation uses [draft typed array tags] for efficient packing of
+homogeneous arrays.  At the moment, only little-endian packing is supported.
+
+[draft typed array tags]: https://tools.ietf.org/html/draft-ietf-cbor-array-tags-00
 
 ### 3.2 Status messages
 
@@ -366,13 +381,13 @@ which to send messages.
  * **throttle_rate** – the minimum amount of time (in ms) that must elapse
     between messages being sent. Defaults to 0
  * **queue_length** – the size of the queue to buffer messages. Messages are
-    buffered as a result of the throttle_rate. Defaults to 1.
+    buffered as a result of the throttle_rate. Defaults to 0 (no queueing).
  * **id** – if specified, then this specific subscription can be unsubscribed
     by referencing the ID.
  * **fragment_size** – the maximum size that a message can take before it is to
     be fragmented.
  * **compression** – an optional string to specify the compression scheme to be
-    used on messages. Valid values are "none" and "png"
+    used on messages. Valid values are "none", "png" and "cbor"
 
 If queue_length is specified, then messages are placed into the queue before
 being sent. Messages are sent from the head of the queue. If the queue gets
