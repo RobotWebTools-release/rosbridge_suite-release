@@ -40,7 +40,6 @@ from rosservice import get_service_uri
 from rosservice import rosservice_find
 from rostopic import find_by_type
 from rostopic import get_topic_type as rosservice_get_topic_type
-from ros import rosnode, rosgraph
 from rosnode import get_node_names
 from rosgraph.masterapi import Master
 
@@ -89,7 +88,7 @@ def get_services_for_type(service_type, services_glob):
 
 def get_nodes():
     """ Returns a list of all the nodes registered in the ROS system """
-    return rosnode.get_node_names()
+    return get_node_names()
 
 
 def get_node_publications(node):
@@ -218,20 +217,17 @@ def get_subscribers(topic, topics_glob):
         return []
 
 
-def get_service_providers(servicetype, services_glob):
+def get_service_providers(queried_type, services_glob):
     """ Returns a list of node names that are advertising a service with the specified type """
-    try:
-        if any_match(str(topic), services_glob):
-            publishers, subscribers, services = Master('/rosbridge').getSystemState()
-            servdict = dict(services)
-            if servicetype in servdict:
-                return servdict[servicetype]
-            else:
-                return []
-        else:
-            return []
-    except socket.error:
-        return []
+    _, _, services = Master('/rosbridge').getSystemState()
+
+    service_type_providers = []
+    for service, providers in services:
+        service_type = get_service_type(service, services_glob)
+
+        if service_type == queried_type:
+            service_type_providers += providers
+    return service_type_providers
 
 
 def get_service_node(service):
