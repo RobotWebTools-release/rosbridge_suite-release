@@ -50,6 +50,8 @@ from rosbridge_library.capabilities.advertise_service import AdvertiseService
 from rosbridge_library.capabilities.unadvertise_service import UnadvertiseService
 from rosbridge_library.capabilities.call_service import CallService
 
+from std_msgs.msg import Int32
+
 def shutdown_hook():
     IOLoop.instance().stop()
 
@@ -61,6 +63,8 @@ if __name__ == "__main__":
     # Parameter handling                             #
     ##################################################
     retry_startup_delay = rospy.get_param('~retry_startup_delay', 2.0)  # seconds
+
+    RosbridgeWebSocket.use_compression = rospy.get_param('~use_compression', False)
 
     # get RosbridgeProtocol parameters
     RosbridgeWebSocket.fragment_timeout = rospy.get_param('~fragment_timeout',
@@ -83,6 +87,9 @@ if __name__ == "__main__":
     RosbridgeWebSocket.authenticate = rospy.get_param('~authenticate', False)
     port = rospy.get_param('~port', 9090)
     address = rospy.get_param('~address', "")
+    # Publisher for number of connected clients
+    RosbridgeWebSocket.client_count_pub = rospy.Publisher('client_count', Int32, queue_size=10, latch=True)
+    RosbridgeWebSocket.client_count_pub.publish(0)
 
     # Get the glob strings and parse them as arrays.
     RosbridgeWebSocket.topics_glob = [
@@ -195,7 +202,7 @@ if __name__ == "__main__":
             sys.exit(-1)
 
     if ("--bson_only_mode" in sys.argv) or bson_only_mode:
-        print("bson_only_mode is only supported in the TCP Version of Rosbridge currently. Ignoring bson_only_mode argument...")
+        RosbridgeWebSocket.bson_only_mode = bson_only_mode
 
     # To be able to access the list of topics and services, you must be able to access the rosapi services.
     if RosbridgeWebSocket.services_glob:
