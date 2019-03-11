@@ -1,0 +1,12 @@
+Source: ros-kinetic-rosapi
+Section: misc
+Priority: extra
+Maintainer: Russell Toris <rctoris@wpi.edu>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin, ros-kinetic-message-generation
+Homepage: http://ros.org/wiki/rosapi
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-rosapi
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-message-runtime, ros-kinetic-rosbridge-library, ros-kinetic-rosgraph, ros-kinetic-rosnode, ros-kinetic-rospy
+Description: Provides service calls for getting ros meta-information, like list of topics, services, params, etc.
