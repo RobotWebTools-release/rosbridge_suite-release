@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>rosbridge_server</name>
-  <version>0.10.2</version>
+  <version>0.11.0</version>
   <description>A WebSocket interface to rosbridge.</description>
 
   <license>BSD</license>
@@ -19,6 +19,7 @@
   <exec_depend>python-tornado</exec_depend>
   <exec_depend>python-twisted-core</exec_depend>
   <exec_depend>rosbridge_library</exec_depend>
+  <exec_depend>rosbridge_msgs</exec_depend>
   <exec_depend>rosapi</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>rosauth</exec_depend>
