@@ -31,6 +31,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import rospy
+import uuid
 
 from rosauth.srv import Authentication
 
@@ -39,9 +40,10 @@ import threading
 import traceback
 from functools import partial, wraps
 
+from tornado import version_info as tornado_version_info
 from tornado.ioloop import IOLoop
 from tornado.websocket import WebSocketHandler, WebSocketClosedError
-from tornado.gen import coroutine
+from tornado.gen import coroutine, BadYieldError
 
 from rosbridge_library.rosbridge_protocol import RosbridgeProtocol
 from rosbridge_library.util import json, bson
@@ -68,7 +70,6 @@ def log_exceptions(f):
 class RosbridgeWebSocket(WebSocketHandler):
     client_id_seed = 0
     clients_connected = 0
-    client_count_pub = None
     authenticate = False
     use_compression = False
 
@@ -99,8 +100,9 @@ class RosbridgeWebSocket(WebSocketHandler):
             self._write_lock = threading.RLock()
             cls.client_id_seed += 1
             cls.clients_connected += 1
-            if cls.client_count_pub:
-                cls.client_count_pub.publish(cls.clients_connected)
+            self.client_id = uuid.uuid4()
+            if cls.client_manager:
+                cls.client_manager.add_client(self.client_id, self.request.remote_ip)
         except Exception as exc:
             rospy.logerr("Unable to accept incoming connection.  Reason: %s", str(exc))
         rospy.loginfo("Client connected.  %d clients total.", cls.clients_connected)
@@ -144,8 +146,8 @@ class RosbridgeWebSocket(WebSocketHandler):
         cls = self.__class__
         cls.clients_connected -= 1
         self.protocol.finish()
-        if cls.client_count_pub:
-            cls.client_count_pub.publish(cls.clients_connected)
+        if cls.client_manager:
+            cls.client_manager.remove_client(self.client_id, self.request.remote_ip)
         rospy.loginfo("Client disconnected. %d clients total.", cls.clients_connected)
 
     def send_message(self, message):
@@ -169,6 +171,14 @@ class RosbridgeWebSocket(WebSocketHandler):
         except WebSocketClosedError:
             rospy.logwarn('WebSocketClosedError: Tried to write to a closed websocket')
             raise
+        except BadYieldError:
+            # Tornado <4.5.0 doesn't like its own yield and raises BadYieldError.
+            # This does not affect functionality, so pass silently only in this case.
+            if tornado_version_info < (4, 5, 0, 0):
+                pass
+            else:
+                _log_exception()
+                raise
         except:
             _log_exception()
             raise
