@@ -42,6 +42,7 @@ from functools import partial, wraps
 
 from tornado import version_info as tornado_version_info
 from tornado.ioloop import IOLoop
+from tornado.iostream import StreamClosedError
 from tornado.websocket import WebSocketHandler, WebSocketClosedError
 from tornado.gen import coroutine, BadYieldError
 
@@ -167,9 +168,19 @@ class RosbridgeWebSocket(WebSocketHandler):
         # Use a try block because the log decorator doesn't cooperate with @coroutine.
         try:
             with self._write_lock:
-                yield self.write_message(message, binary)
+                future = self.write_message(message, binary)
+
+                # When closing, self.write_message() return None even if it's an undocument output.
+                # Consider it as WebSocketClosedError
+                if future is None:
+                    raise WebSocketClosedError
+
+                yield future
         except WebSocketClosedError:
-            rospy.logwarn('WebSocketClosedError: Tried to write to a closed websocket')
+            rospy.logwarn_throttle(1, 'WebSocketClosedError: Tried to write to a closed websocket')
+            raise
+        except StreamClosedError:
+            rospy.logwarn_throttle(1, 'StreamClosedError: Tried to write to a closed stream')
             raise
         except BadYieldError:
             # Tornado <4.5.0 doesn't like its own yield and raises BadYieldError.
