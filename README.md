@@ -1,3 +1,31 @@
+## rosbridge_suite (melodic) - 0.11.3-1
+
+The packages in the `rosbridge_suite` repository were released into the `melodic` distro by running `/usr/bin/bloom-release rosbridge_suite --track melodic --ros-distro melodic` on `Thu, 08 Aug 2019 01:37:58 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_msgs`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: https://github.com/RobotWebTools-release/rosbridge_suite-release.git
+- rosdistro version: `0.11.2-1`
+- old version: `0.11.2-1`
+- new version: `0.11.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.12`
+- rosdep version: `0.15.1`
+- rosdistro version: `0.7.4`
+- vcstools version: `0.1.40`
+
+
 ## rosbridge_suite (kinetic) - 0.11.3-1
 
 The packages in the `rosbridge_suite` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release rosbridge_suite --track kinetic --ros-distro kinetic` on `Thu, 08 Aug 2019 01:31:22 -0000`
