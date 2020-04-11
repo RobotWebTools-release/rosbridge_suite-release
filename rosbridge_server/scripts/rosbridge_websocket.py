@@ -38,6 +38,8 @@ import sys
 from twisted.python import log
 from twisted.internet import reactor, ssl
 from twisted.internet.error import CannotListenError, ReactorNotRunning
+from distutils.version import LooseVersion
+import autobahn #to check version
 from autobahn.twisted.websocket import WebSocketServerFactory, listenWS
 from autobahn.websocket.compress import (PerMessageDeflateOffer,
                                          PerMessageDeflateOfferAccept)
@@ -88,6 +90,7 @@ if __name__ == "__main__":
 
     ping_interval = float(rospy.get_param('~websocket_ping_interval', 0))
     ping_timeout = float(rospy.get_param('~websocket_ping_timeout', 30))
+    null_origin = rospy.get_param('~websocket_null_origin', True) #default to original behaviour
 
     # SSL options
     certfile = rospy.get_param('~certfile', None)
@@ -96,6 +99,8 @@ if __name__ == "__main__":
     RosbridgeWebSocket.authenticate = rospy.get_param('~authenticate', False)
     port = rospy.get_param('~port', 9090)
     address = rospy.get_param('~address', "0.0.0.0")
+
+    external_port = int(rospy.get_param('~websocket_external_port', port))
 
     RosbridgeWebSocket.client_manager = ClientManager()
 
@@ -228,6 +233,14 @@ if __name__ == "__main__":
             print("--websocket_ping_timeout argument provided without a value.")
             sys.exit(-1)
 
+    if "--websocket_external_port" in sys.argv:
+        idx = sys.argv.index("--websocket_external_port") + 1
+        if idx < len(sys.argv):
+            external_port = int(sys.argv[idx])
+        else:
+            print("--websocket_external_port argument provided without a value.")
+            sys.exit(-1)
+
     # To be able to access the list of topics and services, you must be able to access the rosapi services.
     if RosbridgeWebSocket.services_glob:
         RosbridgeWebSocket.services_glob.append("/rosapi/*")
@@ -270,13 +283,22 @@ if __name__ == "__main__":
     rospy.set_param('~actual_port', port)
 
     uri = '{}://{}:{}'.format(protocol, address, port)
-    factory = WebSocketServerFactory(uri)
+    factory = WebSocketServerFactory(uri, externalPort=external_port)
     factory.protocol = RosbridgeWebSocket
-    factory.setProtocolOptions(
-        perMessageCompressionAccept=handle_compression_offers,
-        autoPingInterval=ping_interval,
-        autoPingTimeout=ping_timeout,
-    )
+    # https://github.com/crossbario/autobahn-python/commit/2ef13a6804054de74eb36455b58a64a3c701f889
+    if LooseVersion(autobahn.__version__) < LooseVersion("0.15.0"):
+        factory.setProtocolOptions(
+            perMessageCompressionAccept=handle_compression_offers,
+            autoPingInterval=ping_interval,
+            autoPingTimeout=ping_timeout,
+        )
+    else:
+        factory.setProtocolOptions(
+            perMessageCompressionAccept=handle_compression_offers,
+            autoPingInterval=ping_interval,
+            autoPingTimeout=ping_timeout,
+            allowNullOrigin=null_origin,
+        )
 
     connected = False
     while not connected and not rospy.is_shutdown():
