@@ -106,7 +106,7 @@ tracks:
     last_version: 0.11.6
     name: rosbridge_suite
     patches: null
-    release_inc: '1'
+    release_inc: '2'
     release_repo_url: git@github.com:RobotWebTools-release/rosbridge_suite-release.git
     release_tag: :{version}
     ros_distro: kinetic
