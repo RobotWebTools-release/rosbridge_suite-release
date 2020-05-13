@@ -2,6 +2,14 @@
 Changelog for package rosbridge_library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.11.7 (2020-05-13)
+-------------------
+* Fix backpressure deadlock (`#496 <https://github.com/RobotWebTools/rosbridge_suite/issues/496>`_)
+  * Don't block Subscription.unregister()
+  * Don't add messages to finished queue handler
+  * Decouple incoming WS handling from server thread
+* Contributors: Matt Vollrath
+
 0.11.6 (2020-04-29)
 -------------------
 
