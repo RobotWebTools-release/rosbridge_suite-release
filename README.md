@@ -1,3 +1,31 @@
+## rosbridge_suite (noetic) - 0.11.9-1
+
+The packages in the `rosbridge_suite` repository were released into the `noetic` distro by running `/usr/bin/bloom-release --ros-distro noetic rosbridge_suite` on `Fri, 29 May 2020 10:34:09 -0000`
+
+These packages were released:
+- `rosapi`
+- `rosbridge_library`
+- `rosbridge_msgs`
+- `rosbridge_server`
+- `rosbridge_suite`
+
+Version of package(s) in repository `rosbridge_suite`:
+
+- upstream repository: https://github.com/RobotWebTools/rosbridge_suite
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `0.11.8-1`
+- new version: `0.11.9-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.7`
+- catkin_pkg version: `0.4.20`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## rosbridge_suite (melodic) - 0.11.9-1
 
 The packages in the `rosbridge_suite` repository were released into the `melodic` distro by running `/usr/bin/bloom-release --ros-distro melodic rosbridge_suite` on `Wed, 27 May 2020 12:55:31 -0000`
