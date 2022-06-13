@@ -1,1 +1,1 @@
-{"trim": "", "base": "35689654", "trimbase": "", "parent": "debian/melodic/rosbridge_server", "previous": "b266e1d2"}
+{"base": "70423de9", "parent": "debian/melodic/rosbridge_server", "previous": "6a9dc70a", "trim": "", "trimbase": ""}
