@@ -1,1 +1,1 @@
-{"trim": "", "base": "319bcd45", "trimbase": "", "parent": "debian/noetic/rosbridge_msgs", "previous": "24c68ebe"}
+{"base": "0611165e", "parent": "debian/noetic/rosbridge_msgs", "previous": "73324dc3", "trim": "", "trimbase": ""}
